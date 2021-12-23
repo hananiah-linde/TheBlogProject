@@ -1,0 +1,65 @@
+﻿@using TheBlogProject.Models
+@model IEnumerable<Comment>
+
+@{
+    ViewData["Title"] = "Unmoderated Comments Index";
+}
+
+<h1>Comments</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Body)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Updated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var comment in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => comment.Body)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => comment.Created)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => comment.Updated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => comment.Author.DisplayName)
+            </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@comment.Id">Edit</a> 
+                    |
+                    @*<a asp-action="Delete" asp-route-id="@item.Id" asp-route-slug="@item.Post.Slug">Delete</a>*@
+                    @using (Html.BeginForm("Delete", "Comments", FormMethod.Post, new { id = "deleteForm", @class = "" }))
+                    {
+                        @Html.Hidden("Id", comment.Id)
+                        @Html.Hidden("Slug", comment.Post.Slug)
+
+                        @if((string)ViewData["HardDelete"] == "true")
+                            {
+                                @Html.Hidden("hardDelete", "true")
+                            }
+
+                        <a href="javascript:document.getElementById('deleteForm').submit()">
+                            <span>Delete</span>
+                        </a>
+                    }
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

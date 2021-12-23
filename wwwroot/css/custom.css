@@ -1,0 +1,13 @@
+#SearchButton {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#SearchInput {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+option {
+    font-weight: bolder;
+}

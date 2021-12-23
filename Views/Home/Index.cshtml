@@ -1,0 +1,95 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using TheBlogProject.Enums
+@using TheBlogProject.Models
+@using TheBlogProject.Services
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+@model IPagedList<Blog>
+
+@inject IImageService _imageService
+@inject UserManager<BlogUser> _userManager 
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="row">
+    @foreach (var blog in Model)
+    {
+        <div class="col-sm-12 col-md-6 col-lg-4 mt-2">
+            <div class="card border-dark">
+                <img class="card-img-top" src="@_imageService.DecodeImage(blog.ImageData, blog.ContentType)" alt="Blog logo"/>
+                <div class="card-body text-center">
+                    <div class="blog-primary">
+                        <hr class="card-hr" />
+                        <h6 class="card-title light-text">@blog.Name</h6>
+                        <hr class="card-hr"/>
+                    </div>
+                    <div>
+                        <p class="card-text cftooltip"
+                           data-bs-toggle="tooltip"
+                           data-bs-placement="top"
+                           title=""
+                           data-bs-original-title="@blog.Description">@blog.Description</p>
+                    </div>
+                    <br />
+                    <div class="text-center">
+                        <a class="btn btn-dark btn-sm w-100 mb-2" asp-action="BlogPostIndex" asp-controller="Posts" asp-route-id="@blog.Id">Read Posts</a>
+                    </div>
+
+                    @if (User.IsInRole(BlogRole.Administrator.ToString()))
+                    {
+                        <div class="text-center">
+                            <a class="btn btn-dark btn-sm w-100 mb-2" asp-action="Create" asp-controller="Posts" asp-route-id="@blog.Id">Create Post</a>
+                        </div>
+                    }
+                    @if (User.IsInRole(BlogRole.Administrator.ToString()))
+                    {
+                        <div class="text-center">
+                            <a class="btn btn-warning btn-sm w-100 mb-2" asp-action="Edit" asp-controller="Blogs" asp-route-id="@blog.Id">Edit Blog</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<hr />
+<!-- Paging Controls -->
+<div class="row mt-4">
+    <div class="col">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }),
+            new PagedListRenderOptions
+            {
+                LiElementClasses = new string[] { "page-item" },
+                PageClasses = new string[] { "page-link" }
+            })
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        var swalMsg = '@TempData["SweetAlert"]'
+        if (swalMsg != "") {
+            Swal.fire({
+                icon: 'success',
+                title: swalMsg,
+                timer: 2500
+            })
+        }
+
+        $(document).ready(function () {
+            $("p").tooltip();
+        });
+
+    </script>
+}
