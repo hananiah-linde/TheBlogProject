@@ -1,9 +1,8 @@
-namespace TheBlogProject.Enums
+namespace TheBlogProject.Enums;
+
+public enum ReadyStatus
 {
-    public enum ReadyStatus
-    {
-        Incomplete,
-        ProductionReady,
-        PreviewReady
-    }
+    Incomplete,
+    ProductionReady,
+    PreviewReady
 }

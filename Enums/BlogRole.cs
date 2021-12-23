@@ -1,8 +1,7 @@
-﻿namespace TheBlogProject.Enums
+﻿namespace TheBlogProject.Enums;
+
+public enum BlogRole
 {
-    public enum BlogRole
-    {
-        Administrator,
-        Moderator
-    }
+    Administrator,
+    Moderator
 }
