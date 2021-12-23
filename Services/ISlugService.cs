@@ -1,8 +1,7 @@
-﻿namespace TheBlogProject.Services
+﻿namespace TheBlogProject.Services;
+
+public interface ISlugService
 {
-    public interface ISlugService
-    {
-        string UrlFriendly(string title);
-        bool IsUnique(string slug);
-    }
+    string UrlFriendly(string title);
+    bool IsUnique(string slug);
 }

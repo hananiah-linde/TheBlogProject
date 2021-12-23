@@ -1,17 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
+﻿namespace TheBlogProject.Services;
 
-namespace TheBlogProject.Services
+public interface IImageService
 {
-    public interface IImageService
-    {
-        Task<byte[]> EncodeImageAsync(IFormFile file);
-        Task<byte[]> EncodeImageAsync(string fileName);
-        string DecodeImage(byte[] data, string type);
-        string ContentType(IFormFile file);
-        int Size(IFormFile file);
+    Task<byte[]> EncodeImageAsync(IFormFile file);
+    Task<byte[]> EncodeImageAsync(string fileName);
+    string DecodeImage(byte[] data, string type);
+    string ContentType(IFormFile file);
+    int Size(IFormFile file);
 
-
-
-    }
 }
