@@ -25,6 +25,8 @@ builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true); //Allow datetime without tz to work
+
 var dataService = app.Services
                      .CreateScope()
                      .ServiceProvider
