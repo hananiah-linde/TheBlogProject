@@ -8,7 +8,7 @@
 
     <title>@ViewData["Title"] - TheBlogProject</title>
 
-    <link rel="icon" type="image/x-icon" href="~/img/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="~/img/logo.svg/>
 
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
@@ -29,7 +29,7 @@
 <body>
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-        <div class="container-fluid px-4 px-lg-5">
+        <div class="container px-4 px-lg-5">
             <a class="navbar-brand" href="https://hananiahlinde.com/" target="_blank">Hananiah Linde</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
@@ -54,7 +54,7 @@
 
     <!-- Page Header-->
     <header class="masthead" style="background-image: url(@ViewData["HeaderImage"])">
-        <div class="container-fluid position-relative px-4 px-lg-5">
+        <div class="container position-relative px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <div class="site-heading">
@@ -75,7 +75,10 @@
     </header>
 
     <!-- Main Content-->
-    @RenderBody()
+    <div class="container">
+        @RenderBody()
+    </div>
+
 
     <!-- Footer-->
     <footer class="border-top">

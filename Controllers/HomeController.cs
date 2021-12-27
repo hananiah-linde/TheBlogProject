@@ -32,7 +32,7 @@ public class HomeController : Controller
             .OrderByDescending(b => b.Created)
             .ToPagedListAsync(pageNumber, pageSize);
 
-        ViewData["MainText"] = "Blog";
+        ViewData["MainText"] = ".NET Infinium";
         ViewData["SubText"] = "A Blog by Hananiah Linde";
 
         return View(await blogs);
@@ -41,7 +41,7 @@ public class HomeController : Controller
 
     public IActionResult About()
     {
-        ViewData["MainText"] = "Blog";
+        ViewData["MainText"] = ".NET Infinium";
         ViewData["SubText"] = "About";
         return View();
     }
